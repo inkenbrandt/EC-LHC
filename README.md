@@ -1,55 +1,57 @@
-# EC-LHC (PT-BR)
+**EC-LHC (PT-BR)**
 
-Repositório de códigos/programas referente ao **Mestrado em Engenharia Hidráulica e de Saneamento** do **Alex Naoki Asato Kobayashi** pelo Departamento de Engenharia Hidráulica e Saneamento da Escola de Engenharia de São Carlos na Universidade de São Paulo.
+This repository contains codes/programs related to the **Master’s Degree in Hydraulic Engineering and Sanitation** by **Alex Naoki Asato Kobayashi** from the Department of Hydraulic Engineering and Sanitation at the São Carlos School of Engineering (University of São Paulo).
 
-Período do Mestrado: **Fevereiro/2019** até **14/04/2021** (Data limite para depósito).
+Master’s Program Period: **February/2019** until **April 14, 2021** (deadline for thesis deposit).
 
-Qualificação aprovado: **03/03/2020** (Banca: Edson Wendland, Rodrigo Porto, Maria Mercedes)
+Qualification approved: **March 3, 2020** (Committee: Edson Wendland, Rodrigo Porto, Maria Mercedes)
 
-Defesa do Mestrado: **Aprovado no dia 19/05/2021** (Banca: Edson Wendland, Osvaldo Cabral, Debora Regina Roberti)
+Master’s Defense: **Approved on May 19, 2021** (Committee: Edson Wendland, Osvaldo Cabral, Debora Regina Roberti)
 
+---
 
-## Fases do projeto do Mestrado
-O projeto de Mestrado apresentado na Qualificação consiste basicamente em 3 (três) partes principais:
-1. Definição do programa de processamento para "Eddy Covariance" com dados de baixa frequência da torre de monitoramento (IAB3).
-2. Determinação da área de contribuição ("Footprint") da torre de monitoramento (IAB3).
-3. Preenchimento de falhas para geração da série temporal da torre de monitoramento (Evapotranspiração/Balanço de Energia).
+## Phases of the Master’s Project
+The Master’s project presented during the qualification basically consists of three main parts:
+1. Definition of the processing program for “Eddy Covariance” using low-frequency data from the monitoring tower (IAB3).
+2. Determination of the “Footprint” (contribution area) of the monitoring tower (IAB3).
+3. Gap filling to generate the monitoring tower’s time series (Evapotranspiration/Energy Balance).
 
-Para alcançar os objetivos listados acima é necessário a utilização de ferramentas computacionais para análise de dados.
+Achieving the objectives listed above requires the use of computational tools for data analysis.
 
-### Análise dos dados processados pelo EddyPro
-A análise de dados processados é a etapa final após realizado a conversão e união de dados binários a qual diversas permutações realizados foram medidas 2 principais métricas (inclinação e correlação). Com a utilização de diversas ferramentas computacionais foi possível a variação de diversas condições de dia/hora e filtros para aprimorar o entendimento dos dados. Sendo assim, possibilitando a classificação das permutações e obtendo a permutação que gera o melhor fechamento energético.
+### Analysis of Data Processed by EddyPro
+The processed data analysis is the final step after converting and merging the binary data. In this step, various permutations are performed, measuring two main metrics (slope and correlation). By employing different computational tools, it was possible to vary day/time conditions and apply filters to improve understanding of the data, enabling classification of these permutations and identifying the one that achieves the best energy closure.
 
-Essa análise de dados processados, por utilizar filtro de análise de contribuição, está muito ligado ao tópico abaixo.
+This processed data analysis, because it uses a contribution analysis filter, is closely related to the topic below.
 
-### Análise da área de contribuição ("Footprint")
-A análise de contribuição têm 3 partes essenciais: (i) dados processados, (ii) método de Kljun et al. (2015) e (iii) mapa de classificação para aceitação. Os dados processados podem ser gerados com dados de Rotação de coordenadas 2D ou Regressão planar, sendo o segundo o mais adequado. O método de Kjlun et al. (2015) foi considerado o mais adequado por ser um método capaz de considerar a heterogeneidade do campo e um método a qual o código para sua utilização foi disponibilizado pela autora. E o mapa para classificação da vegetação foi utilizando o *MapBiomas* a qual é amplamente utilizado.
+### Analysis of the “Footprint” (Contribution Area)
+Contribution analysis has three essential parts: (i) processed data, (ii) the Kljun et al. (2015) method, and (iii) the acceptance classification map. The processed data can be generated using either 2D coordinate rotation or planar fit, with the latter being more appropriate. The Kljun et al. (2015) method was chosen because it accounts for field heterogeneity, and the authors provided the code for its use. The vegetation classification map was created using **MapBiomas**, a widely used tool.
 
-### Análise do preenchimento de falhas
-O preenchimento de falhas tem como objetivo criar uma série temporal de Evapotranspiração para que seja possível determinar os valores de ET para diferentes períodos do ano em diferentes escalas. As escalas são diário, sazonal e anual.
+### Analysis of Gap Filling
+The goal of gap filling is to create an evapotranspiration time series, allowing the determination of ET values for different times of the year at various scales: daily, seasonal, and annual.
 
-São utilizados diversas técnicas de preenchimento de falhas e são analisados a partir da correlação e fechamento do balanço energético com os dados presentes no ET e ET_estimado
+Various gap-filling techniques are employed and evaluated based on correlation and the energy balance closure when comparing ET data to ET_estimated.
 
-## Descrição dos códigos
+---
 
-### Processamento dados brutos
-Este tópico tem o objetivo de mostrar as etapas necessárias para obtenção de uma série de dados brutos para o processamento.
+## Description of the Codes
 
-O tutorial para utilização e recomendação em relação ao *workflow* para o processamento de dados se encontra [aqui](https://github.com/alexnaoki/EC-LHC/blob/master/info/etapas_processamento_dados_brutos.md).
+### Raw Data Processing
+This section explains the steps needed to obtain a raw data series for processing.
+
+A tutorial on how to use and follow the recommended workflow for data processing is available [here](https://github.com/alexnaoki/EC-LHC/blob/master/info/etapas_processamento_dados_brutos.md).
 
 ### Bokeh
-Para utilização dos arquivos com biblioteca *Bokeh* é necessário seguir algumas etapas descritas [aqui](https://github.com/alexnaoki/EC-LHC/blob/master/info/descricao_arquivos_bokeh.md).
+To use files with the **Bokeh** library, you must follow a few steps described [here](https://github.com/alexnaoki/EC-LHC/blob/master/info/descricao_arquivos_bokeh.md).
 
-Os programas desenvolvidos utilizando *Bokeh* têm como função principal a interatividade e análise dos dados. Dentre as análises estão: análise de área de contribuição com variação de períodos, visualização e análise de dados para o fechamento do balanço energético com a utilização de filtros de *Mauder e Foken (2004)*, filtro de chuva, filtro de força de sinal e filtro de *Footprint*.
+Programs developed with **Bokeh** primarily focus on data interactivity and analysis. Among the analyses performed are: contribution area analysis over different time periods, data visualization and analysis for energy balance closure using **Mauder and Foken (2004)** filters, rain filters, signal strength filters, and **Footprint** filters.
 
-### Preenchimento de falhas
-O código de preenchimento de falha está no formato *.py*, porém, o *workflow* escolhido para visualização da performance e utilização (em geral) é utilizando um Jupyter Notebook (ou JupyterLab) com *.ipynb*.
+### Gap Filling
+The gap-filling code is in `.py` format; however, the chosen workflow for performance visualization and general usage is through a Jupyter Notebook (or JupyterLab) with `.ipynb`.
 
-O código que contém os métodos de preenchimento de falhas são encontrados [aqui](https://github.com/alexnaoki/EC-LHC/blob/master/gapfilling/gapfilling_iab3.py).
+The code containing the gap-filling methods can be found [here](https://github.com/alexnaoki/EC-LHC/blob/master/gapfilling/gapfilling_iab3.py).
 
-Para a utilização dos métodos de preenchimento de falhas algumas etapas devem ser respeitadas, a qual são descritas [aqui](https://github.com/alexnaoki/EC-LHC/blob/master/info/descricao_arquivo_gapfilling.md).
+Some prerequisites must be followed to use the gap-filling methods, which are described [here](https://github.com/alexnaoki/EC-LHC/blob/master/info/descricao_arquivo_gapfilling.md).
 
-
-### bqplot **(DEPRECIADO)**
-A pasta com bqplot não é mais atualizada.
-> A biblioteca bqplot é interessante, porém, ela possui um performance ruim e serviu para o aprendizado de algumas ferramentas de interação.
+### bqplot **(DEPRECATED)**
+The bqplot folder is no longer updated.  
+> While bqplot is interesting, its performance is poor and it was mainly used to learn some interaction tools.
